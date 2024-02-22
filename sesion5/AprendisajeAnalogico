@@ -1,0 +1,23 @@
+#Universidad del valle - inteligencia artificial
+#Autor: Erick
+#importar las bibliotecas necesaria
+from sklearn.neighbors import NearestNeighbors
+import numpy as np
+
+#Datos conocidos (entrenamientos)
+X_trian = np.array([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]])
+
+#Datos conocidos (nuevas observaciones)
+X_unknown = np.array([[1.5, 2.5], [3.5, 4.5]])
+
+#Crear y ajuntar el modelo de vecinos mas cercanos (Nearest neighbors)
+
+model = NearestNeighbors(n_neighbors=2)
+model.fit(X_trian)
+
+#Encontrar los vecinos mas cercanos para las nuevas observaciones 
+distances, indices = model.kneighbors(X_unknown)
+
+#imprimir los vecinos mas cercanos encontrados 
+for i in range(len(X_unknown)):
+    print("Para la observacion", X_unknown[i], "los vecinos mas cercanos son:", X_trian[indices[i]])
